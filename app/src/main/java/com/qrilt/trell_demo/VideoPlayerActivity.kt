@@ -3,6 +3,7 @@ package com.qrilt.trell_demo
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
@@ -83,6 +84,7 @@ class VideoPlayerActivity : AppCompatActivity() {
     }
 
     private fun hideSystemUi() {
+        playerView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
     }
 
     private fun releasePlayer() {

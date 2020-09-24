@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import androidx.core.content.ContentResolverCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity(), VideosAdapter.InteractionListener {
     // Views
     private lateinit var videosRecyclerView: RecyclerView
+    private lateinit var streamButton: Button
 
     // Properties
     private lateinit var viewAdapter: VideosAdapter
@@ -30,6 +32,15 @@ class MainActivity : AppCompatActivity(), VideosAdapter.InteractionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // init stream button
+        streamButton = findViewById(R.id.activity_main_internet_button)
+        streamButton.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, VideoPlayerActivity::class.java).apply {
+                putExtra("uri", "https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4")
+            }
+            startActivity(intent)
+        })
 
         // init recycler view
         viewManager = LinearLayoutManager(this)
